@@ -35,13 +35,13 @@ int main() {
 	alocaMemoria(tamanho_vetor);
 	preencherVetor(Vetor,tamanho_vetor);
 	
-	exibeVetor(Vetor,tamanho_vetor); ///
+//	exibeVetor(Vetor,tamanho_vetor); ///
 
-	bubbleSort(Vetor, tamanho_vetor); //
+//	bubbleSort(Vetor, tamanho_vetor); //
 
-	exibeVetor(Vetor,tamanho_vetor); //
+//	exibeVetor(Vetor,tamanho_vetor); //
 
-	//menu(Vetor,tamanho_vetor);
+	menu(Vetor,tamanho_vetor);
 }
 //===
 void menu(int *vet, int vet_tam){
@@ -54,12 +54,15 @@ void menu(int *vet, int vet_tam){
 		switch(opt){
 			case 1:
 				printf("Bubble sort");
+				bubbleSort(vet, vet_tam);
 				break;
 			case 2:
 				printf("Selection sort");
+				selectionSort(vet, vet_tam);
 				break;
 			case 3:
 				printf("Inserction sort");
+				inserctionSort(vet, vet_tam);
 				break;
 			default:
 				printf("Opção invalida");
@@ -85,11 +88,12 @@ void preencherVetor(int *vet,int vet_tam){
 	while(ctrl<vet_tam){
 		printf("\nInforme um valor para o Vetor: ");
 
-		valor_imput = imput(10);
+		valor_imput = imput(vet_tam);
 		//scanf("%d",&valor_imput);
 
 		for(int i=0;i<=ctrl;i++){
 			if(valor_imput == vet[i]){
+				printf("\n valor_imput = %d vet[%d] = %d",valor_imput,i,vet[i]);
 				printf("\nO valor não pode ser repetido\n");
 				break;
 			}else if(i == ctrl){
