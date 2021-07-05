@@ -1,0 +1,116 @@
+/*Considere uma empresa que precisa armazenar os seguintes dados dos clientes: nome do
+cliente (string tamanho 60), salário mensal do cliente, ano de nascimento, se possui carro ou
+não. No programa defina a estrutura, crie um vetor para armazenar os dados de 100 clientes,
+leia e imprima os dados para o vetor e chame as seguintes funções:
+a) Função que recebe o vetor criado e retorna a quantidade de clientes com renda
+mensal acima da média;
+b) Função que recebe o vetor criado e retorna a quantidade de clientes que tem
+carro;
+c) Função que recebe o vetor criado e retorna a quantidade de clientes que nasceram
+entre 1965 (inclusive) e 1980 (inclusive).*/
+#include<stdio.h>
+#define TAM 100
+struct empresa{
+	char nome[60];
+	float salario;
+	int ano;
+	int carro;
+};
+void leitura(struct empresa *v)
+{
+	int i;
+	
+	for(i=0;i<TAM;i++)
+	{
+		printf("\nNome:");
+		gets(v->nome);
+		printf("\nSalario:");
+		scanf("%f",&v->salario);
+		printf("\nAno de nascimento:");
+		scanf("%d",&v->ano);
+		printf("\nTem Carro?(Se sim: 1, Se nao: 0):");
+		scanf("%d",&v->carro);
+		fgetc(stdin);
+		v++;
+	}
+}
+void impressao(struct empresa *v)
+{
+	int i;
+	
+	for(i=0;i<TAM;i++)
+	{
+		printf("\nNome = %s\nSalario mensal = %.2f\n Ano de nascimento =%d",v->nome,v->salario,v->ano);
+		if((v->carro)==1)
+			printf("\tTem carro.\n");
+		else
+			printf("\tNão tem carro.\n");
+		v++;
+	}
+}
+float media_salario(struct empresa *v)
+{
+	int i;
+	float s=0;
+	
+	for(i=0;i<TAM;i++)
+	{
+		s+=v->salario;
+		v++;
+	}
+	return(s/TAM);
+}
+int quant_acima(struct empresa *v,float media)
+{
+	int i,cont=0;
+	
+	for(i=0;i<TAM;i++)
+	{
+		if((v->salario)>media)
+			cont++;
+		v++;
+	}
+	return(cont);
+}
+int quant_carro(struct empresa *v)
+{
+	int i,cont=0;
+	
+	for(i=0;i<TAM;i++)
+	{
+		if((v->carro)==1)
+			cont++;
+		v++;
+	}
+	return(cont);
+}
+int quant_ano(struct empresa *v)
+{
+	int i,cont=0;
+	
+	for(i=0;i<TAM;i++)
+	{
+		if((v->ano)>=1965 && (v->ano)<=1980)
+			cont++;
+		v++;
+	}
+	return(cont);
+}
+int main()
+{
+	struct empresa funcionario[TAM];
+	int i,acima,c,ano;
+	float m;
+	
+	leitura(funcionario);
+	impressao(funcionario);
+	m=media_salario(funcionario);
+	acima=quant_acima(funcionario,m);
+	c=quant_carro(funcionario);
+	ano=quant_ano(funcionario);
+	
+	printf("\n Media de salario: %.2f",m);
+	printf("\n Quantidade de funcionarios com salario acima da media: %d",acima);
+	printf("\n Quantidade de funcionarios que tem carro: %d",c);
+	printf("\n Quantidade de funcionarios nascidos entre 1865 e 1980(inclusive):%d",ano);
+}

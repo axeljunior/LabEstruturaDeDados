@@ -1,0 +1,81 @@
+/*Escreva um programa que contenha um vetor com capacidade para agendar 100
+pessoas alocado dinamicamente. Crie funções para: ler os dados da agenda, imprimir os
+dados lidos, buscar pelo mês (ler o mês e imprimir os dados de todas as pessoas que fazem
+aniversário naquele mês). Não se esqueça de usar o operador seta nas funções.*/
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define TAM 100
+struct data{
+	int dia;
+	char mes[10];
+	int ano;
+};
+struct agenda{
+	char nome[60];
+	char end[80];
+	char email[30];
+	struct data aniversario;
+};
+void leitura(struct agenda *b)
+{
+	int i;
+	
+	for(i=0;i<TAM;i++)
+	{
+		printf("\nDia:");
+		scanf("%d",&b->aniversario.dia);
+		fgetc(stdin);
+		printf("\nMes:");
+		gets(b->aniversario.mes);
+		printf("\nAno:");
+		scanf("%d",&b->aniversario.ano);
+		fgetc(stdin);
+		printf("\nNome:");
+		gets(b->nome);
+		printf("\nEndereco:");
+		gets(b->end);
+		printf("\nEmail:");
+		gets(b->email);
+		b++;
+	}
+}
+void impressao(struct agenda *b)
+{
+	int i;
+	
+	for(i=0;i<TAM;i++)
+	{
+		printf("\nNome:%s\nEndereco:%s\nEmail:%s\nData de aniversario: %d/%s/%d\n",b->nome,b->end,b->email,b->aniversario.dia,b->aniversario.mes,b->aniversario.ano);
+		b++;
+	}
+}
+void busca_mes(struct agenda *b)
+{
+	int i;
+	char m[10];
+	
+	printf("\nMes:");
+	gets(m);
+	
+	for(i=0;i<TAM;i++)
+	{
+		if(strcmp(m,b->aniversario.mes)==0)
+		{
+			printf("\nNome:%s\nEndereco:%s\nEmail:%s\n",b->nome,b->end,b->email);
+		}
+		else
+			printf("\nMes nao encontrado.\n");
+		b++;
+	}
+}
+int main()
+{
+	struct agenda vb[TAM];
+	
+	leitura(vb);
+	
+	impressao(vb);
+	
+	busca_mes(vb);
+}
