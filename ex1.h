@@ -18,6 +18,7 @@ int *alocaMemoria(int);
 void preencherVetor(int*,int);
 void exibeVetor(int*,int);
 void menu(int*,int);
+void subMenu(int*,int,int);
 
 // Função para gerar um novo vetor
 // Função para desordenar o mesmo vetor
@@ -37,12 +38,11 @@ void ex1() {
 }
 //===
 void menu(int *vet, int vet_tam){
-	int opt=0,menu=1;
-	int teste = 1;
+	int opt=0,menu=1,submenu=0,input_val;
 
 	while(menu){
 		exibeVetor(vet,vet_tam);
-		printf("\nOque deseja fazer? Escolha uma opção: \n(1) Bubble sort \n(2) Selection sort \n(3) Inserction sort\n(4) Embaralhar\n");
+		printf("\nOque deseja fazer? Escolha uma opção: \n(1) Bubble sort \n(2) Selection sort \n(3) Inserction sort\n(4) Embaralhar\n(5) Menu de Buscas (O vetor deve estar ordenado)\n");
 		scanf("%d",&opt);
 		switch(opt){
 			case 1:
@@ -62,17 +62,41 @@ void menu(int *vet, int vet_tam){
 				preencherVetor(vet, vet_tam);
 				break;
 			case 5:
-				if(buscaSeqOrd(vet,vet_tam,7)){
-					printf("Achou");
-				}
-				else{
-					printf("Não achou");
-				}
+				if(verificaOrd(vet, vet_tam))
+					submenu=1;
+				else
+					printf("O vetor não esta ordenado");
 				break;
 			default:
 				printf("Opção invalida");
 		}
 		limparTela();
+		while(submenu){
+			exibeVetor(vet,vet_tam);
+			printf("\nOque deseja fazer? Escolha uma opção: \n(1) Busca Sequencial Ordenada \n(2) Busca Binaria\n(3) Voltar\n");
+			scanf("%d",&opt);
+			switch(opt){
+				case 1:
+					printf("-- Busca Sequencial Ordenada --");
+					printf("\nInforme o tamanho do Vetor: ");
+					scanf("%d", &input_val);
+					buscaSeqOrd(vet, vet_tam, input_val);
+					break;
+				case 2:
+					printf("-- Busca Binaria --");
+					printf("\nInforme o tamanho do Vetor: ");
+					scanf("%d", &input_val);
+					buscaBinaria(vet, vet_tam, input_val);
+					break;
+				case 3:
+					printf("-- Voltar --");
+					submenu=0;
+					break;
+				default:
+					printf("Opção invalida");
+			}
+			limparTela();
+		}
 	}
 }
 //===
@@ -104,18 +128,18 @@ void preencherVetor(int *vet,int vet_tam){
 */                                         //TESTE
 
 	while(ctrl<vet_tam){
-		printf("\nInforme um valor para o Vetor: ");
+		//printf("\nInforme um valor para o Vetor: ");
 
 		valor_imput = imput(vet_tam);
 		//scanf("%d",&valor_imput);
 
 		for(int i=0;i<=ctrl;i++){
-			printf("\n valor_imput = %d vet[%d] = %d",valor_imput,i,vet[i]); // TESTE
+			//printf("\n valor_imput = %d vet[%d] = %d",valor_imput,i,vet[i]); // TESTE
 			if(valor_imput == vet[i]){
-				printf("\nO valor não pode ser repetido\n\n");
+				//printf("\nO valor não pode ser repetido\n\n");
 				break;
 			}else if(i == ctrl){
-				printf(" ADD"); // TESTE
+				//printf(" ADD"); // TESTE
 				vet[i] = valor_imput;
 				ctrl++;
 				break;

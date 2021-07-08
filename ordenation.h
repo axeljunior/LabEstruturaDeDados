@@ -1,4 +1,6 @@
 void troca (int *elemento_a, int *elemento_b);
+int verificaOrd(int *vetor,int tam);
+
 void bubbleSort (int *vetor, int tam);
 void selectionSort(int *vetor, int tam);
 void inserctionSort(int *vetor, int tam);
@@ -8,6 +10,16 @@ void troca (int *elemento_a, int *elemento_b){
 	aux = *elemento_a;
 	*elemento_a = *elemento_b;
 	*elemento_b = aux;
+}
+
+int verificaOrd(int *vetor,int tam){
+	int aux=0;
+	for(int j=1; j<tam; j++) {
+		for(int i=j; i>0 && vetor[i-1]>vetor[i] ; i--){
+			return 0;
+		}
+	}
+	return 1;
 }
 
 void bubbleSort (int *vetor, int tam){
