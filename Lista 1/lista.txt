@@ -1,11 +1,5 @@
 1) Conte o número de passos e dê a complexidade (pior caso) dos trechos de código abaixo: (Ver Lista)
 
-2) Escreva um programa que leia o tamanho n do vetor e aloque memória para um vetor com n
-elementos inteiros, leia os valores e preencha o vetor. 
-Imprima o vetor. Em seguida, ordene o vetor na ordem decrescente modificando um dos três algoritmos de ordenação simples estudado. Chame uma função que faça a busca sequencial de um elemento (lido via teclado na main) no vetor de valores inteiros ordenados em ordem decrescente. A função deve retornar 1 se o elemento estiver
-presente no vetor e 0, caso contrário. Imprima uma mensagem na main se achou ou não achou o
-elemento procurado.
-
 5) Escreva um programa que utilizando uma pilha, determine se uma string lida é um palíndromo ou
 não, isto é, se a string pode ser lida da mesma maneira para frente ou para trás. Ex: ovo, arara, osso.
 
