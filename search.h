@@ -3,7 +3,7 @@ int buscaBinaria (int*,int,int);
 
 int buscaSeqOrd(int *vetor,int tamanho_vetor, int valAlvo) {
 	int i;
-	for(int i=0; i< tamanho_vetor && valAlvo > vetor[i]; i++);
+	for(i=0; i< tamanho_vetor && valAlvo > vetor[i]; i++);
 
 	if((i==tamanho_vetor) || (valAlvo != vetor[i]))
 		return 0;

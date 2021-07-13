@@ -78,13 +78,13 @@ void menu(int *vet, int vet_tam){
 			switch(opt){
 				case 1:
 					printf("-- Busca Sequencial Ordenada --");
-					printf("\nInforme o tamanho do Vetor: ");
+					printf("\nInforme valor para buscar no Vetor: ");
 					scanf("%d", &input_val);
 					buscaSeqOrd(vet, vet_tam, input_val);
 					break;
 				case 2:
 					printf("-- Busca Binaria --");
-					printf("\nInforme o tamanho do Vetor: ");
+					printf("\nInforme valor para buscar no Vetor: ");
 					scanf("%d", &input_val);
 					buscaBinaria(vet, vet_tam, input_val);
 					break;
