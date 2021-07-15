@@ -1,24 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Outros/pontResumo.h"
-#include "Outros/tools.h"
-
-
-/*
-#include "ordenation.h"
-#include "search.h"
-#include "pilha.h"
-#include "ex1.h"
-#include "ex2.h"
-int main() {
-	srand(time(NULL));
-	// Chama os exemplos
-	//ex1(); // Ex: Ordenação e Busca
-	ex2();
-}
-*/
-
 /*
 10) Escreva um programa que leia 50 valores inteiros e insira-os numa pilha. Em seguida, leia um número 50 valores inteiros e insira-os numa fila circular com contador. 
 Logo após, forneça o maior, o menor e a média aritmética dos elementos na pilha e na fila, respectivamente.
@@ -226,4 +208,3 @@ void exibePilha(struct tpilha *ps,int aux){
 		printf("\n~Posição fora da Pilha~\n");
 }
 // =========== PILHA =========== //
-

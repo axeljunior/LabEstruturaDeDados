@@ -1,6 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+5) Escreva um programa que utilizando uma pilha, determine se uma string lida é um palíndromo ou não, isto é, se a string pode ser lida da mesma maneira para frente ou para trás. Ex: ovo, arara, osso.
+*/
+
 #define TAM 100
 
-// ========== PILHA ========== //
 typedef struct tpilha {
 	int topo;
 	char pilha[TAM];
@@ -9,10 +15,36 @@ typedef struct tpilha {
 void inicializaPilha(struct tpilha *);
 int pilhaVazia(struct tpilha *);
 int pilhaCheia(struct tpilha *);
-int empilha(struct tpilha *, int);
-int desempilha (struct tpilha *);
+int empilha(struct tpilha *, char);
+char desempilha (struct tpilha *);
 void exibePilha(struct tpilha *,int);
-// =========== PILHA ========== //
+
+int main() {
+	PILHA pilha;
+	inicializaPilha(&pilha);
+	int i;
+	char aux, string[25];
+
+	printf("\nDigite uma string: ");
+	gets(string);
+
+	for(i=0;string[i]!='\0';i++){
+		empilha(&pilha,string[i]);
+	}
+
+	for(i=0;string[i]!='\0';i++){
+		aux = desempilha(&pilha);
+		printf("\nComparando %c com %c\n",string[i],aux);
+
+		if(string[i] != aux){
+			printf("\nNão é palindromo");
+			break;
+		}
+	}
+
+	if(pilhaVazia(&pilha))
+		printf("\nÉ palindromo");
+}
 
 // =========== PILHA =========== //
 
@@ -36,7 +68,7 @@ int pilhaCheia(struct tpilha *ps){
 }
 
 // (4) Empilhamento
-int empilha(struct tpilha *ps, int valor){
+int empilha(struct tpilha *ps, char valor){
 	if(pilhaCheia(ps))
 		return 0;
 	ps->topo++;
@@ -45,11 +77,11 @@ int empilha(struct tpilha *ps, int valor){
 }
 
 // (5) Desempilha
-int desempilha (struct tpilha *ps){
-	int elem;
+char desempilha (struct tpilha *ps){
+	char elem;
 	if (pilhaVazia(ps)){
 		printf("\nPilha Vazia");
-		return -1;
+		return '\0';
 	}
 	elem = ps->pilha[ps->topo];
 	ps->topo--;
@@ -60,15 +92,13 @@ int desempilha (struct tpilha *ps){
 void exibePilha(struct tpilha *ps,int aux){
 	if(aux==0)
 		for(int i=0; i<ps->topo+1; i++){
-
-			printf("%d ", ps->pilha[i]);
+			printf("%c ", ps->pilha[i]);
 		}
 	else if(aux>0 && aux<TAM){
 		for(int i=0; i<aux; i++){
-			printf("%d ", ps->pilha[i]);
+			printf("%c ", ps->pilha[i]);
 		}
 	}
 	else
 		printf("\n~Posição fora da Pilha~\n");
 }
-// =========== PILHA =========== //

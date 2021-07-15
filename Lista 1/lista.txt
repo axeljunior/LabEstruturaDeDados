@@ -1,15 +1,6 @@
 1) Conte o número de passos e dê a complexidade (pior caso) dos trechos de código abaixo: (Ver Lista)
 
-5) Escreva um programa que utilizando uma pilha, determine se uma string lida é um palíndromo ou
-não, isto é, se a string pode ser lida da mesma maneira para frente ou para trás. Ex: ovo, arara, osso.
-
-7) Escreva um programa que leia 30 números inteiros e insira-os numa fila f1. Imprima a fila f1.
-Logo após, inverta o conteúdo de f1 nela mesma utilizando uma pilha auxiliar. Imprima a fila f1
-invertida.
-
-10) Escreva um programa que leia 50 valores inteiros e insira-os numa pilha. Em seguida, leia um
-número 50 valores inteiros e insira-os numa fila circular com contador. Logo após, forneça o maior,
-o menor e a média aritmética dos elementos na pilha e na fila, respectivamente.
+10) Escreva um programa que leia 50 valores inteiros e insira-os numa pilha. Em seguida, leia um número 50 valores inteiros e insira-os numa fila circular com contador. Logo após, forneça o maior, o menor e a média aritmética dos elementos na pilha e na fila, respectivamente.
 
 11) Desenvolva um programa leia duas filas f1 e f2 circulares com nó bobo com 20 números reais
 cada uma. Imprima as filas. Em seguida, chame uma função para testar se a fila f1 tem mais
