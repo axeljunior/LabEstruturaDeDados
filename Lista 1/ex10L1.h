@@ -39,7 +39,6 @@ void exibeFila(struct tfila_circC *pf,int aux);
 // =========== FILA Cirular (Contador)=========== //
 
 int main(){
-	srand(time(NULL));
 	PILHA pilha;
 	FILAcc f1;
 	int teste=5;
@@ -48,14 +47,14 @@ int main(){
 
 	int i,aux;
 
-	for(i=0;i<teste;i++){
+	for(i=0;i<50;i++){
 		printf("\nInforme um valor para a Pilha (%d/50): ",i+1);
 		scanf("%d",&aux);
 		empilha(&pilha, aux);
 		//insere_fila(&f1, i); TESTE
 	}
 
-	for(i=0;i<teste;i++){
+	for(i=0;i<50;i++){
 		printf("\nInforme um valor para a Fila (%d/50): ",i+1);
 		scanf("%d",&aux);
 		insere_fila(&f1, aux);
@@ -135,18 +134,25 @@ int remove_fila(struct tfila_circC *pf){
 // (6) Exibição
 
 void exibeFila(struct tfila_circC *pf,int aux){
-	if(aux==0)
-		for(int i=pf->ini; i<pf->fim+1; i++){
+	int i=pf->ini;
 
+	if(fila_cheia(pf)){
+		for(i=0;i<TAM;i++)
 			printf("%d ", pf->fila[i]);
-		}
-	else if(aux>0 && aux<TAM){
-		for(int i=0; i<aux; i++){
+
+	}else if(pf->ini < pf->fim+1){
+		for(i=pf->ini;i<pf->fim+1;i++)
 			printf("%d ", pf->fila[i]);
+	}
+	else{
+		while(i!=pf->fim+1){
+			if(i == TAM){
+				i=0;
+			}
+			printf("%d ", pf->fila[i]);
+			i++;
 		}
 	}
-	else
-		printf("\n~Posição fora da Pilha~\n");
 }
 // =========== FILA Cirular (Contador)=========== //
 

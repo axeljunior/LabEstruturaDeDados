@@ -20,7 +20,7 @@ void Resumo(){
   printf("\n\n\n ---- Ponteiros e Vetores ----");
 
   int VET[5] = {1,2,3,4,5};
-  int *pVET = VET; // Cara isso parece errado
+  int *pVET = VET;
 
   printf("\n\nPara os exemplos considere um vetor \n\nVET[5] = {1,2,3,4,5}\n\nE um ponteiro\n\n*pVET = VET\n\n");
 
@@ -58,9 +58,7 @@ void Resumo(){
     printf("%d ",*(pVET+i));
   }
 
-
   printf("\n\nClaro que, como o esperado, o valor de 'VET[0]''%d' sera igual ao de '*pVET''%d' e '*VET''%d'",VET[0], *pVET, *VET);
-
 
   printf("\n\n ---- FIM ---- \n\n");
 }

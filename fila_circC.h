@@ -56,11 +56,26 @@ int remove_fila(struct tfila_circC *pf){
 // (6) Exibição
 
 void exibeFila(struct tfila_circC *pf,int aux){
-	if(aux==0)
-		for(int i=pf->ini; i<pf->fim+1; i++){
+	int i=pf->ini;
+	if(aux==0){
+		if(fila_cheia(pf)){
+			for(i=0;i<TAM;i++)
+				printf("%d ", pf->fila[i]);
 
-			printf("%d ", pf->fila[i]);
+		}else if(pf->ini < pf->fim+1){
+			for(i=pf->ini;i<pf->fim+1;i++)
+				printf("%d ", pf->fila[i]);
 		}
+		else{
+			while(i!=pf->fim+1){
+				if(i == TAM){
+					i=0;
+				}
+				printf("%d ", pf->fila[i]);
+				i++;
+			}
+		}
+	}
 	else if(aux>0 && aux<TAM){
 		for(int i=0; i<aux; i++){
 			printf("%d ", pf->fila[i]);
