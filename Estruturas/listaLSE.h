@@ -1,29 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-/*
-3) Escreva um programa, que contém uma estrutura do tipo Lista Simplesmente Encadeada que
-armazena números reais. Execute o menu de opções abaixo com as funções para:
-	1) Inserir um elemento na lista
-	2) Contar os nós da lista
-	3) Buscar um elemento (lido via teclado) na lista
-	4) Remover um elemento k (lido via teclado) da lista
-	5) Imprimir a lista
-	6) Sair
-O programa acaba quando o usuário escolher a opção 6.
-*/
-
-typedef struct lista_LSE{
+struct lista_LSE{
 	int info;
 	struct lista_LSE *prox;
-}LISTAse;
+};
 
 int contaNos(struct lista_LSE *);
+void imprimir (struct lista_LSE *);
 
-void exibe(struct lista_LSE *); // (X)
 // ========= // Não Ordenada
-
-struct lista_LSE *insere(struct lista_LSE *lista, int valor); // Não Ordenada // (X)
 
 struct lista_LSE *cria(int); // Não Ordenada
 struct lista_LSE *inserirFinal(struct lista_LSE *, int); // Não Ordenada
@@ -37,44 +20,8 @@ struct lista_LSE *insereOrd(struct lista_LSE *p, int valor);
 struct lista_LSE *buscaOrd(struct lista_LSE *p, int valor);
 struct lista_LSE *removeOrd(struct lista_LSE *p, int valor);
 
-int main(){
-	struct lista_LSE *lista = NULL;
+// ========================================================
 
-	lista = insere(lista,32);
-	lista = insere(lista,42);
-	lista = insere(lista,17);
-	lista = insere(lista,13);
-	lista = insere(lista,7);
-	lista = insere(lista,12);
-
-	exibe(lista);
-
-}
-
-// Função para inserir um nó em uma LSE
-struct lista_LSE *insere(struct lista_LSE *positInicial, int valor){
-
-	struct lista_LSE *positAtual, *novoNo;
-
-	novoNo = (struct lista_LSE*) malloc(sizeof(struct lista_LSE));
-	novoNo->info = valor;
-	novoNo->prox = NULL;
-
-	if(positInicial == NULL){
-		positInicial = novoNo;
-		return positInicial;
-	}
-
-	positAtual = positInicial;
-
-	while(positAtual->prox != NULL)
-		positAtual = positAtual->prox;
-	
-	positAtual->prox = novoNo;
-	return positInicial;
-}
-
-/*
 // Função para criar uma LSE com n nós:
 struct lista_LSE *cria(int n){
 	int i, valor;
@@ -84,8 +31,7 @@ struct lista_LSE *cria(int n){
 
 	for(i=1; i<=n; i++){
 		printf("Informe um valor: ");
-		valor = i;
-		//scanf("%d", &valor);
+		scanf("%d", &valor);
 
 		p = (struct lista_LSE*) malloc(sizeof(struct lista_LSE));
 
@@ -96,12 +42,9 @@ struct lista_LSE *cria(int n){
 		else
 			ini = p;
 		ult = p;
-		//printf("\nEndereço da posição atual: %p\nEndereço do Inicio:        %p\n",p,ini);
-
 	}
 	return ini;
 }
-*/
 
 // Contar os nós da lista:
 int contaNos(struct lista_LSE *lista){
@@ -151,7 +94,7 @@ struct lista_LSE *removerFinal(struct lista_LSE *p, int valor){
 	}
 	ini = p;
 	while(p->prox) {
-		ult = p;
+		ult=p;
 		p = p->prox;
 	}
 
@@ -191,9 +134,9 @@ struct lista_LSE *removeK(struct lista_LSE *p, int k){
 }
 // ==========
 
-// exibe a lista:
-void exibe(struct lista_LSE *lista){
-	while(lista != NULL){
+// Imprimir a lista:
+void imprimir (struct lista_LSE *lista){
+	while(lista){
 		printf("%d\t", lista->info);
 		lista = lista->prox;
 	}

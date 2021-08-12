@@ -1,2 +1,0 @@
-1) Conte o número de passos e dê a complexidade (pior caso) dos trechos de código abaixo: (Ver Lista)
-
