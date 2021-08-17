@@ -37,12 +37,12 @@ void menu(struct lista_LSE *);
 
 int main(){
 	struct lista_LSE *lista = NULL;
-	
+	/*
 	lista = inserirFinal(lista, 1,"A lenda de Ruff Ghanor", "Leonel Caldela", "Nerdbooks");
 	lista = inserirFinal(lista, 2,"O Chamado de Cthulhu", "H.P Lovecraft", "Darkside books");
 	lista = inserirFinal(lista, 3,"Percy Jacskon e os Olimpianos", "Rick Riordan", " Intrínseca.");
 	lista = inserirFinal(lista, 4,"Guia do Mochileiro das Galaxias", "Douglas Adams", "Editora Arqueiro");
-
+	*/
 	menu(lista);
 	
 }

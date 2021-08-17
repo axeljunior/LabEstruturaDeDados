@@ -1,27 +1,3 @@
-3) Escreva um programa, que contém uma estrutura do tipo Lista Simplesmente Encadeada que
-armazena números reais. Execute o menu de opções abaixo através de chamadas às funções
-para:
-	1) Inserir um elemento na lista
-	2) Contar os nós da lista
-	3) Buscar um elemento (lido via teclado) na lista
-	4) Remover um elemento k (lido via teclado) da lista
-	5) Imprimir a lista
-	6) Sair
-O programa acaba quando o usuário escolher a opção 6.
-
-4) Dada uma estrutura livraria com código, título, autor, ano e editora. Faça um programa,usando Listas Simplesmente Encadeadas, com opções para:
-	I- Inserir um livro na lista, 
-	B- Buscar um livro na lista, 
-	R- Remover um livro da lista,
-	E- Escrever todos os livros da lista.
-Na busca, leia um código qualquer e mostre título e autor, caso o código exista na lista. A
-lista deve conter n livros lidos via teclado.
-
-5) Escreva um programa que leia e imprima um vetor com n (lido via teclado) elementos
-inteiros. Em seguida, gere uma Lista Simplesmente Encadeada ordenada com os elementos
-do vetor. Imprima a lista gerada.
-
-
 =======
 
 7) Faça um programa que leia números inteiros e insira-os numa Lista Simplesmente Encadeada Circular. Imprima a lista. 
@@ -30,8 +6,7 @@ Retorne ponteiro para o final da primeira parte da lista. Não esqueça de trata
 Protótipo: struct lista *divideKlsec(struct lista *p, int k);
 
 
-9) Escreva um programa, que contém uma estrutura do tipo Lista Simplesmente Encadeada
-Circular que armazena números inteiros e execute as seguintes funções:
+9) Escreva um programa, que contém uma estrutura do tipo Lista Simplesmente Encadeada Circular que armazena números inteiros e execute as seguintes funções:
 	a) Criar uma LSEC com n nós;
 	b) Imprimir os elementos da lista;
 	c) Contar os elementos da lista;
@@ -39,6 +14,9 @@ Circular que armazena números inteiros e execute as seguintes funções:
 	elemento existe);
 	e) Criar e imprimir uma cópia da lista;
 	f) Inserir um nó antes do k-ésimo nó da lista, o nó k deve ser indicado pelo usuário.
+
+=======
+
 
 10) Escreva um programa, que contém uma estrutura do tipo Lista Duplamente Encadeada que
 armazena números inteiros e execute as seguintes funções:

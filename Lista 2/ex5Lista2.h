@@ -1,25 +1,73 @@
-typedef struct lista_LSE{
+#include <stdio.h>
+#include <stdlib.h>
+/*
+5) Escreva um programa que leia e imprima um vetor com n (lido via teclado) elementos
+inteiros. 
+Em seguida, gere uma Lista Simplesmente Encadeada ordenada com os elementos
+do vetor. 
+Imprima a lista gerada.
+*/
+
+struct lista_LSE{
 	int info;
 	struct lista_LSE *prox;
-}LISTAse;
+};
 
 // =============================================================== // Funções da Lista
 void exibe(struct lista_LSE *);     
-int conta_nos(struct lista_LSE *);   
+int contaNos(struct lista_LSE *);   
 int busca(struct lista_LSE *, int); 
 struct lista_LSE *concatena(struct lista_LSE *, struct lista_LSE  *); 
 // ========= // Não Ordenada
-struct lista_LSE *inserir_final(struct lista_LSE *, int);
-struct lista_LSE *remover_final(struct lista_LSE *);    
+struct lista_LSE *inserirFinal(struct lista_LSE *, int);
+struct lista_LSE *removerFinal(struct lista_LSE *);    
 struct lista_LSE *removeNo(struct lista_LSE *, int );  
 // ========= // Ordenada 
 struct lista_LSE *insereOrd(struct lista_LSE *, int);
+// ======================================================================== // Funções da Lista
 
-//struct lista_LSE *buscaOrd(struct lista_LSE *p, int valor);
-//struct lista_LSE *removeOrd(struct lista_LSE *p, int valor);
-//void removeNoTeste(struct lista_LSE **positInicial, int no); // Teste
-// =============================================================== //
+int main(){
+	int valor,tamanhoVetor=0,op=1;
 
+	int *vetor = NULL;
+	struct lista_LSE *lista = NULL;
+
+
+	while(op){
+		if(!vetor)
+			vetor = (int*) malloc(sizeof(int));
+		else
+			vetor = realloc(vetor, 1*sizeof(int));
+
+		if(!vetor){
+			printf ("\nErro: Falha ao alocar memoria \n");
+        	exit(1);
+		}
+
+		printf("\nInforme um valor para o vetor\n ==> ");
+		scanf("%d",&valor);
+		vetor[tamanhoVetor] = valor;
+
+		printf("\nDesejar adicionar outro valor ao vetor?\n 1:Sim/0:Não\n ==> ");
+		scanf("%d",&op);
+		switch(op){
+			case 1:
+				tamanhoVetor++;
+				break;
+			case 0:
+				break;
+			default:
+				printf("\nOpção invalida");
+		}
+	}
+
+	for(int i=0; i<tamanhoVetor; i++)
+		lista = insereOrd(lista, vetor[i]);
+	printf("\nLista: \n");
+	exibe(lista);
+
+	free(lista);
+}
 // =============================================================== //
 // =============================================================== //
 
@@ -48,7 +96,7 @@ int busca(struct lista_LSE *lista, int val){
 	return 0;
 }
 // Contar os nós da lista:
-int conta_nos(struct lista_LSE *lista){
+int contaNos(struct lista_LSE *lista){
 	int cont;
 
 	if(!lista)
@@ -79,7 +127,7 @@ struct lista_LSE *concatena (struct lista_LSE *lista1, struct lista_LSE  *lista2
 //======================================================================//
 
 // Função para inserir um nó na lista
-struct lista_LSE *inserir_final(struct lista_LSE *positInicial, int valor){
+struct lista_LSE *inserirFinal(struct lista_LSE *positInicial, int valor){
 
 	struct lista_LSE *positAtual, *novoNo;
 
@@ -102,7 +150,7 @@ struct lista_LSE *inserir_final(struct lista_LSE *positInicial, int valor){
 }
 
 // Função para remover o último nó da lista.
-struct lista_LSE *remover_final(struct lista_LSE *positInicial){
+struct lista_LSE *removerFinal(struct lista_LSE *positInicial){
 
 	struct lista_LSE *positAtual, *positFinal;
 
@@ -122,42 +170,12 @@ struct lista_LSE *remover_final(struct lista_LSE *positInicial){
 	free(positAtual);
 	return positInicial;
 }
-/*
-void removeNoTeste(struct lista_LSE **positInicial, int no){
-    struct lista_LSE *positAtual, *positAux;
-    int cont;
-
-    if(no==1){
-        if(!(*positInicial)->prox){
-            free(positInicial); 
-        }else{
-            positAux = (*positInicial)->prox; 
-            (*positInicial)->prox = NULL;
-            free(*positInicial); 
-
-            *positInicial = positAux; // <-- Isso Aqui
-        }
-    }else{
-        cont = 1;
-        positAtual = *positInicial; 
-
-        while(cont != no) {
-            positAux = positAtual;       
-            positAtual = positAtual->prox;
-            cont++;
-        }
-        positAux->prox = positAtual->prox;
-
-        free(positAtual);
-    }
-}
-*/
 // Função para remover o k-ésimo nó da lista.
 struct lista_LSE *removeNo(struct lista_LSE *positInicial, int no){
 	struct lista_LSE *positAtual, *positAux;
 	int cont;
 
-	if(no < 1 || no > conta_nos(positInicial) )
+	if(no < 1 || no > contaNos(positInicial) )
 		return positInicial;
 	else if(no==1){
 		if(!positInicial->prox){
@@ -220,42 +238,3 @@ struct lista_LSE *insereOrd(struct lista_LSE *positInicial, int valor){
 		return positInicial;
 	}
 }
-
-/*
-// Busca em LSE Ordenada
-struct lista_LSE *buscaOrd(struct lista_LSE *lista, int valor){
-	struct lista_LSE *q;
-	if(!lista)
-		return NULL;
-	while(lista && valor != lista->info){
-		q = lista;
-		lista = lista->prox;
-	}
-	return lista;
-}
-// Remove em LSE Ordenada
-struct lista_LSE *removeOrd(struct lista_LSE *p, int valor){
-	struct lista_LSE *q, *t;
-	if(!p)
-		return NULL;
-	else {
-		if(buscaOrd(p,valor)==NULL){
-			printf("\nElemento não existente.");
-			return p;
-		}
-		else {
-			q=p;
-		while(q->info < valor){
-			t = q;
-			q = q->prox;
-		}
-		if(p!=q)
-			t->prox = q->prox;
-		else
-			p = p->prox;
-		free(q);
-		return p;
-		}
-	}
-}
-*/
