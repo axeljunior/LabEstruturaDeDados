@@ -19,100 +19,6 @@ struct lista_LSE{
 };
 
 // ======================================================================== // Funções da Lista
-void exibe(struct lista_LSE *);     
-void exibeValorDoNo(struct lista_LSE *lista, int no);
-int contaNos(struct lista_LSE *);   
-int busca(struct lista_LSE *, float); 
-struct lista_LSE *concatena(struct lista_LSE *, struct lista_LSE  *); 
-// ========= // Não Ordenada
-struct lista_LSE *inserirFinal(struct lista_LSE *, float);
-struct lista_LSE *removerFinal(struct lista_LSE *);    
-struct lista_LSE *removeNo(struct lista_LSE *, int);  
-// ======================================================================== //
-void menu(struct lista_LSE *);
-
-int main(){
-	struct lista_LSE *lista = NULL;
-
-	menu(lista);
-}
-void menu(struct lista_LSE *lista){
-	int op,auxInt,run=1;
-	float auxFloat;
-
-	while(run){
-		printf("\n(1) - Inserir um elemento na lista");
-		printf("\n(2) - Contar os nós da lista");
-		printf("\n(3) - Buscar um elemento na lista");
-		printf("\n(4) - Remover um elemento da lista ");
-		printf("\n(5) - Imprimir a lista");
-		printf("\n(6) - Sair");
-		printf("\n ==> ");
-		scanf("%d",&op);
-		printf("\n ============== \n");
-		switch(op){
-			case 1:
-				printf("\nInforme um Valor\n ==> ");
-				scanf("%f",&auxFloat);
-				lista = inserirFinal(lista, auxFloat);
-				break;
-			case 2:
-				if(!lista){
-					printf("\nLista vazia!!\n");
-					break;
-				}
-				auxInt = contaNos(lista);
-				printf("\nA Lista possui %d nós\n", auxInt);
-				break;
-			case 3:
-				if(!lista){
-					printf("\nLista vazia!!\n");
-					break;
-				}
-				printf("\nInforme o valor que deseja buscar na lista\n ==> ");
-				scanf("%f",&auxFloat);
-				auxInt = busca(lista, auxFloat);
-				if(!auxInt){
-					printf("\nO valor não existe na lista!!!");
-					break;
-				}
-				exibeValorDoNo(lista,auxInt);
-				break;
-			case 4:
-				if(!lista){
-					printf("\nLista vazia!!\n");
-					break;
-				}
-				printf("\nInforme o valor que deseja remover da lista\n ==> ");
-				scanf("%f",&auxFloat);
-				auxInt = busca(lista, auxFloat);
-				if(!auxInt){
-					printf("\nO valor não existe na lista!!!");
-					break;
-				}
-				lista = removeNo(lista,auxInt);
-				break;
-			case 5:
-				if(!lista){
-					printf("\nLista vazia!!\n");
-					break;
-				}
-
-				exibe(lista);
-				break;
-			case 6:
-				run=0;
-				break;
-			default:
-				printf("\nOpção Invalida!!\n");
-		}
-		printf("\n ============== \n");
-
-	}
-}
-// =============================================================== //
-// =============================================================== //
-
 // Exibe a lista:
 void exibe(struct lista_LSE *lista){
 	printf("\n");
@@ -260,3 +166,83 @@ struct lista_LSE *removeNo(struct lista_LSE *positInicial, int no){
 		return positInicial;
 	}
 }
+// ======================================================================== //
+int main(){
+	struct lista_LSE *lista = NULL;
+	
+	int op,auxInt,run=1;
+	float auxFloat;
+
+	while(run){
+		printf("\n(1) - Inserir um elemento na lista");
+		printf("\n(2) - Contar os nós da lista");
+		printf("\n(3) - Buscar um elemento na lista");
+		printf("\n(4) - Remover um elemento da lista ");
+		printf("\n(5) - Imprimir a lista");
+		printf("\n(6) - Sair");
+		printf("\n ==> ");
+		scanf("%d",&op);
+		printf("\n ============== \n");
+		switch(op){
+			case 1:
+				printf("\nInforme um Valor\n ==> ");
+				scanf("%f",&auxFloat);
+				lista = inserirFinal(lista, auxFloat);
+				break;
+			case 2:
+				if(!lista){
+					printf("\nLista vazia!!\n");
+					break;
+				}
+				auxInt = contaNos(lista);
+				printf("\nA Lista possui %d nós\n", auxInt);
+				break;
+			case 3:
+				if(!lista){
+					printf("\nLista vazia!!\n");
+					break;
+				}
+				printf("\nInforme o valor que deseja buscar na lista\n ==> ");
+				scanf("%f",&auxFloat);
+				auxInt = busca(lista, auxFloat);
+				if(!auxInt){
+					printf("\nO valor não existe na lista!!!");
+					break;
+				}
+				exibeValorDoNo(lista,auxInt);
+				break;
+			case 4:
+				if(!lista){
+					printf("\nLista vazia!!\n");
+					break;
+				}
+				printf("\nInforme o valor que deseja remover da lista\n ==> ");
+				scanf("%f",&auxFloat);
+				auxInt = busca(lista, auxFloat);
+				if(!auxInt){
+					printf("\nO valor não existe na lista!!!");
+					break;
+				}
+				lista = removeNo(lista,auxInt);
+				break;
+			case 5:
+				if(!lista){
+					printf("\nLista vazia!!\n");
+					break;
+				}
+
+				exibe(lista);
+				break;
+			case 6:
+				run=0;
+				break;
+			default:
+				printf("\nOpção Invalida!!\n");
+		}
+		printf("\n ============== \n");
+
+	}
+}
+// =============================================================== //
+// =============================================================== //
+

@@ -171,9 +171,9 @@ int main(){
 	printf("\nInsira a quantidade de nós: \n ==> ");
 	scanf("%d", &n);
 	while(n--){
-		//printf("\nInforme o Valor: \n ==> ");
-		//scanf("%d", &k);
-		lista = inserir(lista,n);
+		printf("\nInforme o Valor: \n ==> ");
+		scanf("%d", &k);
+		lista = inserir(lista,k);
 	}
 
 	//	(X) - b) Imprimir os elementos da lista;
@@ -221,6 +221,7 @@ int main(){
 	printf("\nInforme o Valor: \n ==> ");
 	scanf("%d", &n);
 	lista = insere_AntesNo(lista,k,n);
+	
 	printf("\nConteudo na lista: ");
 	exibe(lista);
 }

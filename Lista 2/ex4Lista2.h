@@ -10,121 +10,25 @@
 Na busca, leia um código qualquer e mostre título e autor, caso o código exista na lista. 
 A lista deve conter n livros lidos via teclado.
 */
-struct livraria{
+struct lista_LSE{
+	int codigo;
+
 	char titulo[50];
 	char autor[50];
 	char editora[50];
 
-};
-struct lista_LSE{
-	int codigo;
-	struct livraria data;
 	struct lista_LSE *prox;
 };
 
 // ======================================================================= // Funções da Lista
-void exibe(struct lista_LSE *);     
-void exibeNo(struct lista_LSE *lista, int no);
-int contaNos(struct lista_LSE *);   
-int busca(struct lista_LSE *, float); 
-struct lista_LSE *concatena(struct lista_LSE *, struct lista_LSE  *); 
-// ========= // Não Ordenada
-struct lista_LSE *inserirFinal(struct lista_LSE *positInicial, int, char [],char [],char []);
-struct lista_LSE *removerFinal(struct lista_LSE *);    
-struct lista_LSE *removeNo(struct lista_LSE *, int);  
-// ======================================================================== // Funções da Lista
-void menu(struct lista_LSE *);
-
-int main(){
-	struct lista_LSE *lista = NULL;
-	/*
-	lista = inserirFinal(lista, 1,"A lenda de Ruff Ghanor", "Leonel Caldela", "Nerdbooks");
-	lista = inserirFinal(lista, 2,"O Chamado de Cthulhu", "H.P Lovecraft", "Darkside books");
-	lista = inserirFinal(lista, 3,"Percy Jacskon e os Olimpianos", "Rick Riordan", " Intrínseca.");
-	lista = inserirFinal(lista, 4,"Guia do Mochileiro das Galaxias", "Douglas Adams", "Editora Arqueiro");
-	*/
-	menu(lista);
-	
-}
-void menu(struct lista_LSE *lista){
-	char op;
-	char titulo[50],autor[50],editora[50];
-	int n,auxInt,quantidade=0,cod=4,run=1;
-
-	while(run){
-		printf("\n(I) - Inserir um livro na lista.");
-		printf("\n(B) - Buscar um livro na lista.");
-		printf("\n(R) - Remover um livro da lista.");
-		printf("\n(E) - Escrever todos os livros da lista.");
-		printf("\n(S) - Sair");
-		printf("\n ==> ");
-		scanf("%c",&op);
-		fgetc(stdin);
-		switch(op){
-			case 'I':
-				printf("\nInforme a quantidade de livros que deseja inserir \n ==> ");
-				scanf("%d",&n);
-				fgetc(stdin);
-				while(quantidade != n){
-					printf("\n%d/%d",n,quantidade+1);
-					printf("\nInsira o titulo do livro\n ==> ");
-					gets(titulo);
-					printf("\nInsira o nome do autor\n ==> ");
-					gets(autor);
-					printf("\nInsira o nome da editora\n ==> ");
-					gets(editora);
-					cod++;
-					lista=inserirFinal(lista, cod, titulo, autor, editora);
-					quantidade++;
-				}
-				break;
-			case 'B':
-				if(!lista){
-					printf("\nLista vazia!!\n");
-					break;
-				}
-				printf("\nInsira o codigo do livro\n ==> ");
-				scanf("%d",&auxInt);
-				fgetc(stdin);
-				exibeNo(lista,busca(lista,auxInt));
-				break;
-			case 'R':
-				if(!lista){
-					printf("\nLista vazia!!\n");
-					break;
-				}
-				printf("\nInsira o codigo do livro que deseja remover\n ==> ");
-				scanf("%d",&auxInt);
-				fgetc(stdin);
-				lista = removeNo(lista,busca(lista,auxInt));
-				break;
-			case 'E':
-				if(!lista){
-					printf("\nLista vazia!!\n");
-					break;
-				}
-				exibe(lista);
-				break;
-			case 'S':
-				run=0;
-				break;
-			default:
-				printf("\nOpção Invalida!!\n");
-		}
-
-	}
-}
-// =============================================================== //
-// =============================================================== //
-
 // Exibe a lista:
 void exibe(struct lista_LSE *lista){
 	printf("\n");
 	while(lista != NULL){
 		printf("\n ============== ");
-		printf("\nTitulo: %s |Codigo: %d", lista->data.titulo, lista->codigo);
-		printf("\nEditora: %s", lista->data.editora);
-		printf("\nNome do autor: %s", lista->data.autor);
+		printf("\nTitulo: %s |Codigo: %d", lista->titulo, lista->codigo);
+		printf("\nEditora: %s", lista->editora);
+		printf("\nNome do autor: %s", lista->autor);
 		printf("\n ============== \n");
 		lista = lista->prox;
 	}
@@ -139,9 +43,9 @@ void exibeNo(struct lista_LSE *lista, int no){
 		cont++;
 	}
 	printf("\n ==============");
-	printf("\nTitulo: %s", lista->data.titulo);
-	printf("\nEditora: %s", lista->data.editora);
-	printf("\nNome do autor: %s", lista->data.autor);
+	printf("\nTitulo: %s", lista->titulo);
+	printf("\nEditora: %s", lista->editora);
+	printf("\nNome do autor: %s", lista->autor);
 	printf("\n ============== \n");
 	printf("\n");
 }
@@ -203,9 +107,9 @@ struct lista_LSE *inserirFinal(struct lista_LSE *positInicial, int cod, char tit
 	novoNo->prox = NULL;
 
 	//------
-	strcpy(novoNo->data.titulo,titulo);
-	strcpy(novoNo->data.autor,autor);
-	strcpy(novoNo->data.editora,editora);
+	strcpy(novoNo->titulo,titulo);
+	strcpy(novoNo->autor,autor);
+	strcpy(novoNo->editora,editora);
 	//------
 
 	if(!positInicial){
@@ -274,8 +178,79 @@ struct lista_LSE *removeNo(struct lista_LSE *positInicial, int no){
 			cont++;
 		}
 		positAux->prox = positAtual->prox;
-		printf("\n %s ... Removido!\n",positAtual->data.titulo);
+		printf("\n %s ... Removido!\n",positAtual->titulo);
 		free(positAtual);
 		return positInicial;
+	}
+}
+// ======================================================================== // Funções da Lista
+
+int main(){
+	struct lista_LSE *lista = NULL;
+	char op;
+	char titulo[50],autor[50],editora[50];
+	int n,auxInt,quantidade=0,cod=1,run=1;
+
+	while(run){
+		printf("\n(I) - Inserir um livro na lista.");
+		printf("\n(B) - Buscar um livro na lista.");
+		printf("\n(R) - Remover um livro da lista.");
+		printf("\n(E) - Escrever todos os livros da lista.");
+		printf("\n(S) - Sair");
+		printf("\n ==> ");
+		scanf("%c",&op);
+		fgetc(stdin);
+		switch(op){
+			case 'I':
+				printf("\nInforme a quantidade de livros que deseja inserir \n ==> ");
+				scanf("%d",&n);
+				fgetc(stdin);
+				while(quantidade != n){
+					printf("\n%d/%d",n,quantidade+1);
+					printf("\nInsira o titulo do livro\n ==> ");
+					gets(titulo);
+					printf("\nInsira o nome do autor\n ==> ");
+					gets(autor);
+					printf("\nInsira o nome da editora\n ==> ");
+					gets(editora);
+					cod++;
+					lista = inserirFinal(lista, cod, titulo, autor, editora);
+					quantidade++;
+				}
+				break;
+			case 'B':
+				if(!lista){
+					printf("\nLista vazia!!\n");
+					break;
+				}
+				printf("\nInsira o codigo do livro\n ==> ");
+				scanf("%d",&auxInt);
+				fgetc(stdin);
+				exibeNo(lista,busca(lista,auxInt));
+				break;
+			case 'R':
+				if(!lista){
+					printf("\nLista vazia!!\n");
+					break;
+				}
+				printf("\nInsira o codigo do livro que deseja remover\n ==> ");
+				scanf("%d",&auxInt);
+				fgetc(stdin);
+				lista = removeNo(lista,busca(lista,auxInt));
+				break;
+			case 'E':
+				if(!lista){
+					printf("\nLista vazia!!\n");
+					break;
+				}
+				exibe(lista);
+				break;
+			case 'S':
+				run=0;
+				break;
+			default:
+				printf("\nOpção Invalida!!\n");
+		}
+
 	}
 }
