@@ -137,10 +137,10 @@ struct lista_LSEC *remove_final(struct lista_LSEC *positFinal){
 struct lista_LSEC *removeNo(struct lista_LSEC *positFinal, int no){
 	struct lista_LSEC *positAtual, *positAuxiliar; 
 	int cont;
+	
 	if( no<1 || no>conta_nos(positFinal) ){
 		return positFinal;
-	}
-	else if(no == 1){
+	}else if(no == 1){
 		if(positFinal->prox == positFinal){
 			free(positFinal);
 			return NULL;

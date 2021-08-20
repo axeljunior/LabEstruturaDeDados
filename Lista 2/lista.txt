@@ -3,8 +3,7 @@ armazena números inteiros e execute as seguintes funções:
 	a) Criar uma LDE com n nós;
 	b) Imprimir os elementos da lista;
 	c) Contar os elementos da lista;
-	d) Remover o k-ésimo nó da lista, o nó k deve ser indicado pelo usuário (testar se tal
-	elemento existe);
+	d) Remover o k-ésimo nó da lista, o nó k deve ser indicado pelo usuário (testar se tal elemento existe);
 	e) Criar e imprimir uma cópia da lista;
 	f) Inserir um nó antes do k-ésimo nó da lista, o nó k deve ser indicado pelo usuário.
 
@@ -33,11 +32,11 @@ um nó da lista é dado por:
 		struct aluno *dprox;
 	};
 	
-Imprima a lista (usando chamada de função). Busque uma matricula lida via teclado na
-lista (usando chamada de função), mostre se achou ou não achou. Em seguida, implemente
-uma função que receba a lista criada e retorne uma nova lista dos alunos aprovados, ou
-seja, os alunos com média maior ou igual a 6.0. Imprima a nova lista. Crie uma outra
-função que recebe a lista e e retorne uma nova lista dos alunos que estão reprovados, ou
+Imprima a lista (usando chamada de função). 
+Busque uma matricula lida via teclado na lista (usando chamada de função), mostre se achou ou não achou.
+Implemente uma função que receba a lista criada e retorne uma nova lista dos alunos aprovados, ou
+seja, os alunos com média maior ou igual a 6.0. Imprima a nova lista. 
+Crie uma outra função que recebe a lista e retorne uma nova lista dos alunos que estão reprovados, ou
 seja, com média menor do que 4.0. Imprima a lista resultante.
 
 20) Escreva um programa que leia vários números reais positivos e insira-os em um

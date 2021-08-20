@@ -131,7 +131,7 @@ struct lista_LSEC *insere_AntesNo(struct lista_LSEC *positFinal, int no, int val
 	positAtual = inserir(positAtual,valor);
 	return positFinal;
 }
-//Divide a lista no No
+//Copia lista Deepcopy
 struct lista_LSEC *copia_lista(struct lista_LSEC *lista){
 	struct lista_LSEC *novaLista=NULL,*positAtual;
 

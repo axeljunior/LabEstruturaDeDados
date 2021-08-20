@@ -7,7 +7,8 @@ Faça um programa que leia números inteiros e insira-os numa Lista Simplesmente
 Imprima a lista. 
 Imprima o número de nós da lista. 
 Em seguida, chame uma função que receba a Lista Simplesmente Encadeada Circular e o valor do k-ésimo nó (lido e testado na main) e divida a lista no k-ésimo nó. 
-Retorne ponteiro para o final da primeira parte da lista. Não esqueça de tratar o ponteiro do final da lista restante.
+Retorne ponteiro para o final da primeira parte da lista. 
+Não esqueça de tratar o ponteiro do final da lista restante.
 Protótipo: struct lista *divideKlsec(struct lista *p, int k);
 */
 

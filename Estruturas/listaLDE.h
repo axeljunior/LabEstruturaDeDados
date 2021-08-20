@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 struct lista_LDE{
 	int info;
 
@@ -8,6 +5,14 @@ struct lista_LDE{
 	struct lista_LDE *dprox;
 };
 
+int exibe(struct lista_LDE *);
+int conta_nos(struct lista_LDE *);
+struct lista_LDE *copia_lista(struct lista_LDE *);
+struct lista_LDE *concatena(struct lista_LDE *, struct lista_LDE  *);
+
+struct lista_LDE *insere(struct lista_LDE *, int);
+struct lista_LDE *insere_frente(struct lista_LDE *, int);
+struct lista_LDE *remove_no(struct lista_LDE *, int);
 
 // ======================  Funções da Lista ====================== // 
 // =============================================================== // 
@@ -148,6 +153,8 @@ struct lista_LDE *concatena(struct lista_LDE *lista1, struct lista_LDE  *lista2)
 
 
 // ============== ??????? ====================
+// ===========================================
+
 //7) Função para inserir um nó apontado por p após um nó apontado por x,onde x aponta para algum nó de uma LDE. Utilize apenas as variáveis p e x na função.
 void insereNo(struct lista_LDE *p, struct lista_LDE *x){ 
 	if( x->dprox != NULL)
@@ -177,10 +184,11 @@ struct lista_LDE *removeNo(struct lista_LDE *y, struct lista_LDE *x){
 	return y;
 }
 // ============== ??????? ====================
-// ============== ??????? ====================
+// ===========================================
 
 // =============================================================== // 
 // =============================================================== // 
+
 int main(){
 	struct lista_LDE *lista = NULL;
 	struct lista_LDE *lista2 = NULL;
