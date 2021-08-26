@@ -150,4 +150,6 @@ int main(){
 	exibe(lista);
 	printf("Conteudo na lista 2: ");
 	exibe(numerosNegativos);
+
+	free(lista);
 }

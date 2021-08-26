@@ -13,65 +13,7 @@ struct lista_LSE{
 	struct lista_LSE *prox;
 };
 
-// =============================================================== // Funções da Lista
-void exibe(struct lista_LSE *);     
-int contaNos(struct lista_LSE *);   
-int busca(struct lista_LSE *, int); 
-struct lista_LSE *concatena(struct lista_LSE *, struct lista_LSE  *); 
-// ========= // Não Ordenada
-struct lista_LSE *inserirFinal(struct lista_LSE *, int);
-struct lista_LSE *removerFinal(struct lista_LSE *);    
-struct lista_LSE *removeNo(struct lista_LSE *, int );  
-// ========= // Ordenada 
-struct lista_LSE *insereOrd(struct lista_LSE *, int);
-// ======================================================================== // Funções da Lista
-
-int main(){
-	int valor,tamanhoVetor=0,op=1;
-
-	int *vetor = NULL;
-	struct lista_LSE *lista = NULL;
-
-
-	while(op){
-		if(!vetor)
-			vetor = (int*) malloc(sizeof(int));
-		else
-			vetor = realloc(vetor, 1*sizeof(int));
-
-		if(!vetor){
-			printf ("\nErro: Falha ao alocar memoria \n");
-        	exit(1);
-		}
-
-		printf("\nInforme um valor para o vetor\n ==> ");
-		scanf("%d",&valor);
-		vetor[tamanhoVetor] = valor;
-
-		printf("\nDesejar adicionar outro valor ao vetor?\n 1:Sim/0:Não\n ==> ");
-		scanf("%d",&op);
-		switch(op){
-			case 1:
-				tamanhoVetor++;
-				break;
-			case 0:
-				break;
-			default:
-				printf("\nOpção invalida");
-		}
-	}
-
-	for(int i=0; i<tamanhoVetor; i++)
-		lista = insereOrd(lista, vetor[i]);
-	printf("\nLista: \n");
-	exibe(lista);
-
-	free(lista);
-}
-// =============================================================== //
-// =============================================================== //
-
-// Exibe a lista:
+// =============================================================== // // Exibe a lista:
 void exibe(struct lista_LSE *lista){
 	printf("\n");
 	while(lista != NULL){
@@ -237,4 +179,47 @@ struct lista_LSE *insereOrd(struct lista_LSE *positInicial, int valor){
 		}
 		return positInicial;
 	}
+}
+// ======================================================================== // Funções da Lista
+int main(){
+	int valor,tamanhoVetor=0,op=1;
+
+	int *vetor = NULL;
+	struct lista_LSE *lista = NULL;
+
+
+	while(op){
+		if(!vetor)
+			vetor = (int*) malloc(sizeof(int));
+		else
+			vetor = realloc(vetor, 1*sizeof(int));
+
+		if(!vetor){
+			printf ("\nErro: Falha ao alocar memoria \n");
+        	exit(1);
+		}
+
+		printf("\nInforme um valor para o vetor\n ==> ");
+		scanf("%d",&valor);
+		vetor[tamanhoVetor] = valor;
+
+		printf("\nDesejar adicionar outro valor ao vetor?\n 1:Sim/0:Não\n ==> ");
+		scanf("%d",&op);
+		switch(op){
+			case 1:
+				tamanhoVetor++;
+				break;
+			case 0:
+				break;
+			default:
+				printf("\nOpção invalida");
+		}
+	}
+
+	for(int i=0; i<tamanhoVetor; i++)
+		lista = insereOrd(lista, vetor[i]);
+	printf("\nLista: \n");
+	exibe(lista);
+
+	free(lista);
 }

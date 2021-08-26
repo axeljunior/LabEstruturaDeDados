@@ -131,7 +131,7 @@ struct lista_LSEC *insere_AntesNo(struct lista_LSEC *positFinal, int no, int val
 	positAtual = inserir(positAtual,valor);
 	return positFinal;
 }
-//Copia lista Deepcopy
+//8) Copia lista Deepcopy
 struct lista_LSEC *copia_lista(struct lista_LSEC *lista){
 	struct lista_LSEC *novaLista=NULL,*positAtual;
 
@@ -164,7 +164,7 @@ int main(){
 	struct lista_LSEC *lista = NULL;
 	int n,k;
 	/*
-		Como a questão não cita "Menu" asumi que queria as funções de forma sequencial na main
+		Como a questão não cita "Menu" assumi que queria as funções de forma sequencial na main
 	*/
 
 	//	(X) - a) Criar uma LSEC com n nós;
@@ -224,4 +224,5 @@ int main(){
 	
 	printf("\nConteudo na lista: ");
 	exibe(lista);
+	free(lista);
 }

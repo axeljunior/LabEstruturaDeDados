@@ -253,4 +253,5 @@ int main(){
 		}
 
 	}
+	free(lista);
 }

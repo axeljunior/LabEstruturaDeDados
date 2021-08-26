@@ -1,28 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 struct lista_LDE{
-	int info;
-
+	int chave;
+	char nome[50];
 	struct lista_LDE *eprox;
 	struct lista_LDE *dprox;
 };
 
-int exibe(struct lista_LDE *);
-int conta_nos(struct lista_LDE *);
-struct lista_LDE *copia_lista(struct lista_LDE *);
-struct lista_LDE *concatena(struct lista_LDE *, struct lista_LDE  *);
-
-struct lista_LDE *insere(struct lista_LDE *, int);
-struct lista_LDE *insere_frente(struct lista_LDE *, int);
-struct lista_LDE *remove_no(struct lista_LDE *, int);
+/*
+18) Escreva um programa que insira n (lido via teclado) nós numa Lista Duplamente
+Encadeada Ordenada que armazena em cada nó uma chave inteira e um nome. 
+Em seguida, as seguintes operações devem ser definidas:
+	a) Buscar uma chave na lista;
+	b) Inserir um novo elemento na lista mantendo a ordem;
+	c) Remover um elemento da lista;
+	d) Imprimir os valores da lista;
+	e) Copiar uma lista L1 para uma lista L2.
+*/
 
 // ======================  Funções da Lista ====================== // 
-// =============================================================== // 
+// =============================================================== //
 
 // 1) Função para imprimir a LDE.
 int exibe(struct lista_LDE *positInicial){
 	if(!positInicial)
 		return 0;
 	while(positInicial){
-		printf("%d\t", positInicial->info);
+		printf("\n --------\n Chave: %d", positInicial->chave);
+		printf("\n Nome: %s\n --------\n ", positInicial->nome);
+
 		positInicial = positInicial->dprox;
 	}
 	return 1;
@@ -46,7 +53,7 @@ struct lista_LDE *insere(struct lista_LDE *positInicial, int valor){
 	struct lista_LDE *novoNo, *positAtual;
 
 	novoNo = (struct lista_LDE*) malloc(sizeof(struct lista_LDE));
-	novoNo->info = valor;
+	novoNo->chave = valor;
 
 	if(!positInicial){
 		novoNo->eprox = novoNo->dprox = NULL;
@@ -70,7 +77,7 @@ struct lista_LDE *insere_frente(struct lista_LDE *positInicial, int valor){
 	struct lista_LDE *novoNo;
 
 	novoNo = (struct lista_LDE*) malloc(sizeof(struct lista_LDE));
-	novoNo->info = valor;
+	novoNo->chave = valor;
 	novoNo->eprox = NULL;
 
 	if(!positInicial){
@@ -92,7 +99,7 @@ void insereNo(struct lista_LDE *noInserido, struct lista_LDE *noDaLista){
 	noDaLista->eprox = noInserido; 				// A 1 2 B 3 4    | 3 <- B |
 }
 // 
-struct lista_LDE *insere_AntesNo(struct lista_LDE *positInicial, int no, int valor{
+struct lista_LDE *insere_AntesNo(struct lista_LDE *positInicial, int no, int valor){
 	struct lista_LDE *positAtual, *novoNo;
 	int cont=1;
 
@@ -102,7 +109,7 @@ struct lista_LDE *insere_AntesNo(struct lista_LDE *positInicial, int no, int val
 	}
 
 	novoNo = (struct lista_LDE*) malloc(sizeof(struct lista_LDE));
-	novoNo->info = valor;
+	novoNo->chave = valor;
 
 	positAtual = positInicial;
 	while(cont != no) {
@@ -116,27 +123,30 @@ struct lista_LDE *insere_AntesNo(struct lista_LDE *positInicial, int no, int val
 	return positInicial;
 }
 // 3.3) Função para inserir de maneira ordenada
-struct lista_LDE *insereOrd(struct lista_LDE *positInicial, int valor){
+struct lista_LDE *insereOrd(struct lista_LDE *positInicial,char nome[], int valor){
 	struct lista_LDE *novoNo, *positAtual;
 
 	novoNo = (struct lista_LDE*) malloc(sizeof(struct lista_LDE));
-	novoNo->info = valor;	
+	// ----
+	strcpy(novoNo->nome, nome);
+	novoNo->chave = valor;	
+	// ----
 
 	if(!positInicial){
 		novoNo->eprox = novoNo->dprox = NULL;
 		return novoNo;
 	}else{
 		positAtual = positInicial;
-		while(positAtual->dprox && valor > positAtual->info)
+		while(positAtual->dprox && valor > positAtual->chave)
 			positAtual = positAtual->dprox;
 
-		if(!positAtual->dprox && valor > positAtual->info){ 
+		if(!positAtual->dprox && valor > positAtual->chave){ 
 			positAtual->dprox = novoNo;
 			novoNo->eprox = positAtual;
 			novoNo->dprox = NULL;
 			return positInicial;
 		}
-		if(valor < positAtual->info){
+		if(valor < positAtual->chave){
 			insereNo(novoNo, positAtual);
 
 			if(positAtual==positInicial)
@@ -146,12 +156,12 @@ struct lista_LDE *insereOrd(struct lista_LDE *positInicial, int valor){
 		return positInicial;
 	}
 }
-
 // 4) Função para remover o k-ésimo nó da LDE.
 struct lista_LDE *remove_no(struct lista_LDE *positInicial, int no){
 	struct lista_LDE *positAtual, *positAux, *positAux2;
 	int cont;
 	if( no<1 || no>conta_nos(positInicial) ){
+		printf("\nValor do nó não existe na lista\n");
 		return positInicial;
 	}else if(no == 1){
 		if(!positInicial->dprox){
@@ -192,11 +202,11 @@ struct lista_LDE *copia_lista(struct lista_LDE *lista){
 		return NULL;
 	}
 	positAtual = lista;
-	novaLista = insere(novaLista, positAtual->info);
+	novaLista = insereOrd(novaLista, positAtual->nome, positAtual->chave);
 	
 	while(positAtual->dprox){
 		positAtual = positAtual->dprox;
-		novaLista = insere(novaLista, positAtual->info);
+		novaLista = insereOrd(novaLista, positAtual->nome, positAtual->chave);
 	}
 	return novaLista;
 }
@@ -212,110 +222,64 @@ struct lista_LDE *concatena(struct lista_LDE *lista1, struct lista_LDE  *lista2)
 	listaAux->dprox = lista2;
 	return lista1;
 }
-// 7) Busca em uma lista Ordenada
+
+// =============================================================== // 
+/*
+(X) -	a) Buscar uma chave na lista;
+(X) -	b) Inserir um novo elemento na lista mantendo a ordem;
+(X) -	c) Remover um elemento da lista;
+(X) -	d) Imprimir os valores da lista;
+(X) -	e) Copiar uma lista L1 para uma lista L2.
+*/
+// =============================================================== // 
+
 int busca_seqOrd(struct lista_LDE *lista, int tamanho, int alvo) {
 	int i;
-	for(i=0; i < tamanho && alvo > lista->mat; i++)
+	for(i=0; i < tamanho && alvo > lista->chave; i++)
 		lista = lista->dprox;
 
-	if((i==tamanho) || (alvo != lista->mat))
+	if((i==tamanho) || (alvo != lista->chave))
 		return 0;
 	return 1;
 }
-// ============== ??????? ====================
-// ===========================================
-
-//7) Função para inserir um nó apontado por p após um nó apontado por x,onde x aponta para algum nó de uma LDE. Utilize apenas as variáveis p e x na função.
-void insereNo(struct lista_LDE *p, struct lista_LDE *x){ 
-	if( x->dprox != NULL)
-		x->dprox->eprox = p;
-	p->dprox = x->dprox;
-	p->eprox = x;
-	x->dprox = p;
-}
-//8) Função para remover um nó apontado por x de uma LDE, onde y aponta para o início da lista. Retorne ponteiro para o início da lista resultante. Utilize apenas as variáveis y e x na função.
-struct lista_LDE *removeNo(struct lista_LDE *y, struct lista_LDE *x){
-	if(y == x){
-		if(y -> dprox == NULL)
-			y = NULL;
-		else{
-			y = y -> dprox;
-			y -> eprox = NULL;
-		}
-	}else{
-		if(!x->dprox)
-			x->eprox->dprox = NULL;
-		else{
-			x->eprox->dprox = x->dprox;
-			x->dprox->eprox = x->eprox;
-		}
-	}
-	free(x);
-	return y;
-}
-// ============== ??????? ====================
-// ===========================================
-
-// =============================================================== // 
-// =============================================================== // 
 
 int main(){
 	struct lista_LDE *lista = NULL;
 	struct lista_LDE *lista2 = NULL;
+	int n=5,k;
 
-	lista = insere(lista, 0);
-	lista = insere(lista, 1);
-	lista = insere(lista, 2);
-	lista = insere(lista, 3);
+	/*
+		Ao contrario das outras questões a 10 - 18 - 19 não citam "menu" no enunciado então imagino que a ideia era fazer ao longo da main mesmo.
+	*/
 
-	printf("\nQuantidade de Nós: %d", conta_nos(lista));
-	printf("\nConteudo da lista: \n");
+	// - Criar uma lista LDE com 'n' nós com Chave e Nome.
+	printf("\nInforme a quantidade de nós\n ==> ");
+	scanf("%d",&n);	/*
+		Essa questão também não cita "Menu" então imagino que queira as operações de forma sequencial na main
+	*/
+
+	while(n--)
+		lista = insereOrd(lista, "Nome", n+1);
 	exibe(lista);
 
+	// (X) -  a) Buscar uma chave na lista;
+	if(busca_seqOrd(lista, conta_nos(lista), 5))
+		printf("\nAchou");
+	else
+		printf("\nNão achou");
 
-	printf("\n\nRemovendo o 1ºNo da Lista ...");
-	lista = remove_no(lista, 1);
-	printf("\nConteudo da lista: \n");
+	// (X) -  b) Inserir um novo elemento na lista mantendo a ordem;
+	printf("\nInsira um Nome \n ==> ");
+	lista = insereOrd(lista, "Nome", 42);
+
+	// (X) -  c) Remover um elemento da lista;
+	printf("\nInsira a Chave que deseja remover \n ==> ");
+	lista = remove_no(lista, 2);
+	// (X) -  d) Imprimir os valores da lista;
 	exibe(lista);
-
-	printf("\n\nCopiando Lista ...");
+	// (X)  -  e) Copiar uma lista L1 para uma lista L2.
 	lista2 = copia_lista(lista);
-	printf("\nConteudo da lista original: \n");
-	exibe(lista);
-	printf("\nConteudo da lista copiada: \n");
-	exibe(lista2);
 
-	printf("\n\nModificando Lista2 ...");
-	if(lista2){
-		lista2->info *= -1;
-		lista2->dprox->info *= -1;
-		lista2->dprox->dprox->info *= -1;
-
-	}
-	printf("\nConteudo da lista original: \n");
-	exibe(lista);
-	printf("\nConteudo da lista copiada: \n");
-	exibe(lista2);
-
-	printf("\n\nConcatenando as listas ...");
-	lista = concatena(lista,lista2);
-	printf("\nConteudo da lista concatenada: \n");
-	exibe(lista);
+	free(lista);
+	free(lista2);
 }
-
-/*
-void insereNo(struct lista_LDE *noInserido, struct lista_LDE *noDaLista){ 
-	if( noDaLista->dprox != NULL)
-		noDaLista->dprox->eprox = noInserido;  // 1 2 B 3 4 A | A <- null |	| 	   B <- 3
-	noInserido->dprox = noDaLista->dprox; 	  // 1 2 B 3 4 A | A -> null |	| 	   B -> 3
-	noInserido->eprox = noDaLista; 			 // 1 2 B 3 4 A | 4 <- A |		| 2 <- B
-	noDaLista->dprox = noInserido; 			// 1 2 B 3 4 A | 4 -> A  |		| 2 -> B
-	
-	// === Lista // 1 2 3 4
-	if( noDaLista->eprox != NULL )
-		noDaLista->eprox->dprox = noInserido;;     // A 1 2 B 3 4 | 2 -> B |
-	noInserido->eprox = noDaLista->eprox; 	  	  // A 1 2 B 3 4  | 2 <- B |
-	noInserido->dprox = noDaLista; 				 // A 1 2 B 3 4   | B -> 3 |
-	noDaLista->eprox = noInserido; 				// A 1 2 B 3 4    | 3 <- B |
-}
-*/
