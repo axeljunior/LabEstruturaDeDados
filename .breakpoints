@@ -2,28 +2,10 @@
   "files": {
     "main.c": [
       {
-        "id": "abe3ec1b-be10-4206-964b-b4eb03336852",
-        "line": 371,
-        "version": 35533,
-        "index": 8994
-      },
-      {
-        "id": "345c4b89-f5ca-401e-ad7b-0310feb9a15b",
-        "line": 371,
-        "version": 35533,
-        "index": 8994
-      },
-      {
-        "id": "73ffaa25-7039-4276-af5a-e086c1895ebc",
-        "line": 371,
-        "version": 35533,
-        "index": 8994
-      },
-      {
         "id": "aedfd350-d2ef-496b-b570-7ae76a6dce2e",
-        "line": 371,
-        "version": 35533,
-        "index": 8994
+        "line": 229,
+        "version": 48535,
+        "index": 7377
       }
     ]
   }

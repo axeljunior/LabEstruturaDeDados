@@ -1,0 +1,56 @@
+2) Escreva uma função recursiva para apresentar a soma de todos os números inteiros pares de
+zero até um número informado pelo usuário.
+Por exemplo: Para n = 9 a função deve retornar 0 + 2 + 4 + 6 + 8 = 20
+
+
+22) Considere a função abaixo:
+	int eureka(int a){
+	if ( a <= 0 )
+	return 0;
+	else
+	return (a + eureka(a-1));
+	}
+a) O que essa função faz? Explique com um exemplo.
+b) Calcule a sua ordem de complexidade. Mostre como você chegou a esse resultado.
+c) Escreva uma função não-recursiva que resolve o mesmo problema. Qual é a ordem de
+complexidade da sua função? Explique.
+d) Qual implementação é mais eficiente? Justifique.
+
+// ---- // ---- // ---- // ---- // ---- // ---- // ---- // ---- // ---- // ---- 
+
+35) Desenhe passo a passo numa árvore AVL, inicialmente vazia, as seguintes chaves:
+	100, 80, 60, 40, 20, 70, 30, 50, 35, 45, 55, 75, 65, 73, 77.
+Mostre passo a passo conforme é inserido cada nó, indicando as rotações (RE, RD,
+RDE, RED), quando necessário.
+Em seguida, realize as seguintes remoções, utilizando sempre a árvore resultante da
+operação anterior, indicando as rotações (RE, RD, RDE, RED), quando necessário.
+	a) remover 75;
+	b) remover 35;
+	c) remover 79;
+	d) remover 30;
+	e) remover 60;
+	f) remover 73.
+
+36) Monte uma árvore B de ordem d=2 com as chaves abaixo:
+	109, 55, 80, 125, 190, 5, 45, 61, 77, 81, 100, 121, 122, 133, 135, 140, 189, 200, 210, 220, 230.
+Realize as seguintes operações, utilizando sempre a árvore resultante da operação anterior.
+Redesenhe a árvore a cada passo, indicando os nós que sofrem modificações, bem como a
+ocorrência de CISÃO, REDISTRIBUIÇÃO ou CONCATENAÇÃO:
+	a) inserção de 150;
+	b) remoção de 189;
+	c) remoção de 80;
+	d) inserção de 65;
+	e) inserção de 66;
+	f) remoção de 109.
+
+40) Escreva uma função recursiva que recebe como parâmetro o ponteiro para a raiz de uma
+árvore binária de busca que armazena apenas valores inteiros e retorna um ponteiro para o
+maior valor armazenado na árvore. Caso a árvore seja vazia, a função deve retornar NULL.
+O protótipo da função é: struct tree *maior_valor(struct tree *raiz);
+
+43) Escreva uma função recursiva que retorna o número de nós numa árvore binária cujos
+valores das chaves são múltiplos de três.
+
+44) Escreva uma função recursiva que retorne o números de nós de uma ABB cujo o valor é
+maior que x. No caso da árvore ser vazia deverá ser retornado o valor 0.
+Protótipo: int conta_Maiores(struct tree *raiz, int x);
